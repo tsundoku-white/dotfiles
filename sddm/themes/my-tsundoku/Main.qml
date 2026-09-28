@@ -89,8 +89,14 @@ Rectangle {
           cursorDelegate: Item {}
           focus: true
 
-          onTextChanged: root.loginFailed = false
+          onTextChanged: root.loginFailed = false 
 
+          Keys.onPressed: (event) => {
+            if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+              sddm.login(root.currentUser, password.text, root.sessionIndex)
+              event.accepted = true
+            }
+          }
         }
       }
     }

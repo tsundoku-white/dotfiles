@@ -1,3 +1,5 @@
 singleton Colors 1.0 Colors.qml
 singleton AppLauncherState 1.0 AppLauncherState.qml
+singleton AppSidePannelState 1.0 AppSidePannelState.qml
 AppLauncher 1.0 AppLauncher.qml
+SidePannel 1.0 SidePannel.qml

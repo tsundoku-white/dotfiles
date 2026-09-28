@@ -131,7 +131,7 @@ PanelWindow {
     topRightRadius: Colors.radiusPanel
     bottomLeftRadius: 0
     bottomRightRadius: 0
-    border.width: 1
+    border.width: 0
     border.color: Colors.divider
 
     Behavior on height {
@@ -193,8 +193,10 @@ PanelWindow {
           anchors.left: parent.left
           anchors.leftMargin: 14
           anchors.verticalCenter: parent.verticalCenter
-          text: "\u{F02E}" // Search glyph.
+          text: "\uf002" // Search glyph.
           font.pixelSize: 15
+          font.weight: Font.Bold
+
           color: searchInput.activeFocus ? Colors.accent : Colors.textMuted
 
           Behavior on color {
@@ -304,7 +306,7 @@ PanelWindow {
             anchors.topMargin: 2
             anchors.bottomMargin: 2
             radius: 10
-            color: appRow.selected ? root.accentFill : "transparent"
+            color: "transparent"
 
             Behavior on color {
               ColorAnimation { duration: 100 }
@@ -355,9 +357,9 @@ PanelWindow {
                   anchors.centerIn: parent
                   visible: appIcon.status !== Image.Ready
                   text: modelData.name.charAt(0).toUpperCase()
-                  font.pixelSize: 15
+                  font.pixelSize: appRow ? 15 : 17
                   font.family: "Inter, Segoe UI, Roboto, sans-serif"
-                  font.weight: Font.Bold
+                  font.weight: appRow ? Font.Bold : Font.Normal
                   color: appRow.selected ? Colors.accent : Colors.textPrimary
 
                   Behavior on color {
@@ -373,9 +375,9 @@ PanelWindow {
 
                 Text {
                   text: modelData.name
-                  font.pixelSize: 13
+                  font.pixelSize: appRow.selected ? 15 : 13
                   font.family: "Inter, Segoe UI, Roboto, sans-serif"
-                  font.weight: appRow.selected ? Font.Medium : Font.Normal
+                  font.weight: appRow.selected ? Font.Bold : Font.Normal
                   color: appRow.selected ? Colors.textPrimary : root.fgDim
 
                   Behavior on color {

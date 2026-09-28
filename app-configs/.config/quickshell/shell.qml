@@ -15,7 +15,19 @@ ShellRoot {
     }
   }
 
+  IpcHandler {
+    target: "sidepannel"
+
+    function toggle() {
+      AppSidePannelState.toggle();
+    }
+  }
+
   AppLauncher {
+    screen: Quickshell.screens.find(s => s.name === mainMonitor)
+  }
+
+  SidePannel {
     screen: Quickshell.screens.find(s => s.name === mainMonitor)
   }
 }

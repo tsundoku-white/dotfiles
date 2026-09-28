@@ -32,9 +32,12 @@ stow -R app-configs
 stow -R Pictures
 
 echo "==> Deploying SDDM configuration..."
-sudo cp -r "$DOTFILES_DIR/sddm/"* /usr/share/sddm/
+sudo mkdir -p /usr/share/sddm/themes /etc/sddm.conf.d
+sudo cp -r "$DOTFILES_DIR/sddm/themes/"* /usr/share/sddm/themes/
+sudo cp "$DOTFILES_DIR/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/
 
 echo "==> Deploying GRUB configuration..."
 sudo cp -r "$DOTFILES_DIR/grub/"* /etc/default/
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "==> Setup complete!"

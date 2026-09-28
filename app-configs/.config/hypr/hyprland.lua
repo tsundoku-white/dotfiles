@@ -39,6 +39,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("swaybg -o DP-1 -i /home/ayris/Pictures/wallpapers/earth_c.jpg -m fill -o HDMI-A-1 -i /home/ayris/Pictures/wallpapers/earth_l.jpg")
     hl.exec_cmd("quickshell")
     hl.exec_cmd("fcitx5")
+    hl.exec_cmd("swaync")
 end)
 
 -----------------------
@@ -125,6 +126,7 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + CTRL + Q", hl.dsp.exit())
 
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("qs ipc call applauncher toggle"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("qs ipc call sidepannel toggle"))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("qs ipc call top_hud toggle"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))

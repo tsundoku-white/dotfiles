@@ -6,8 +6,8 @@ QtObject {
   // Slightly cooler and deeper than a flat dark theme, with clear
   // separation between levels so elevated surfaces read as "elevated"
   // instead of everything sitting at nearly the same value.
-  readonly property color bg: "#0a0b10"
-  readonly property color bgElevated: "#15171f"
+  readonly property color bg: "#141414"
+  readonly property color bgElevated: "#141414"
   readonly property color bgSurface: "#1d2028"
   readonly property color bgHover: "#262a35"
 
@@ -27,9 +27,9 @@ QtObject {
   // One restrained primary accent used for focus states and selection.
   // Semantic colors are kept for meaning (power = red, volume = green)
   // but desaturated so they read as one family rather than a rainbow.
-  readonly property color accent: "#5b93ff"
+  readonly property color accent: "#ffffff"
   readonly property color accentDefault: "#5b93ff"
-  readonly property color accentBlue: "#5b93ff"
+  readonly property color accentBlue: "#ffffff"
   readonly property color accentGreen: "#34d399"
   readonly property color accentRed: "#ff6b6b"
   readonly property color accentOrange: "#ffa958"
@@ -39,12 +39,12 @@ QtObject {
   // ── Design tokens ────────────────────────────────────────────────────
   // Centralised so every panel/button shares the same rhythm instead of
   // each file inventing its own radius or shadow values.
-  readonly property int radiusPanel: 10
-  readonly property int radiusCard: 10
-  readonly property int radiusButton: 10
+  readonly property int radiusPanel: 5
+  readonly property int radiusCard: 5
+  readonly property int radiusButton: 5
 
   readonly property color shadowColor: "#8f000000"
-  readonly property real shadowBlur: 0.55
+  readonly property real shadowBlur: 0.8
 
   function tint(color, alpha) {
     return Qt.rgba(color.r, color.g, color.b, alpha);
