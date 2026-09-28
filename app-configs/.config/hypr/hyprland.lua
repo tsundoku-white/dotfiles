@@ -39,7 +39,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("swaybg -o DP-1 -i /home/ayris/Pictures/wallpapers/earth_c.jpg -m fill -o HDMI-A-1 -i /home/ayris/Pictures/wallpapers/earth_l.jpg")
     hl.exec_cmd("quickshell")
     hl.exec_cmd("fcitx5")
-    hl.exec_cmd("swaync")
 end)
 
 -----------------------

@@ -30,4 +30,8 @@ ShellRoot {
   SidePannel {
     screen: Quickshell.screens.find(s => s.name === mainMonitor)
   }
+
+  NotificationPopups {
+    screen: Quickshell.screens.find(s => s.name === mainMonitor)
+  }
 }

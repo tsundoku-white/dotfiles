@@ -1,7 +1,6 @@
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Bluetooth
-import Quickshell.Io
 import QtQuick
 import QtQuick.Effects
 
@@ -17,7 +16,6 @@ PanelWindow {
     right: true
   }
 
-  // Only capture input while the panel is open (full-screen so click-outside closes it)
   mask: Region {
     item: AppSidePannelState.visible ? maskCover : null
   }
@@ -36,34 +34,15 @@ PanelWindow {
 
   // ── Theming ──────────────────────────────────────────────────────────
   readonly property color accentFill: Colors.tint(Colors.accent, 0.18)
-  readonly property color accentIcon: Colors.tint(Colors.accent, 0.28)
-  readonly property color fgDim: Colors.tint(Colors.textPrimary, 0.65)
+  readonly property color accentBorder: Colors.tint(Colors.accent, 0.45)
 
   // ── Panel geometry ───────────────────────────────────────────────────
   readonly property int maxVisible: 5
   readonly property int panelWidth: Math.round(width / 7)
   readonly property int panelHeight: Math.round(height * 0.9)
-  readonly property int itemHeight: Math.round(panelHeight / maxVisible)
 
-  // ── State (mirrored from swaync) ─────────────────────────────────────
-  property bool dnd: false
-  property int notifCount: 0
-
-  // swaync-client -s prints a JSON line every time something changes:
-  // {"count":0,"dnd":false,"visible":false,"inhibited":false}
-  Process {
-    running: true
-    command: ["swaync-client", "-s"]
-    stdout: SplitParser {
-      onRead: line => {
-        try {
-          const st = JSON.parse(line);
-          root.dnd = st.dnd;
-          root.notifCount = st.count;
-        } catch (e) {}
-      }
-    }
-  }
+  // ── State ────────────────────────────────────────────────────────────
+  // Notification data lives in the Notifs singleton (Notifs.qml)
 
   // ── Reusable power button ────────────────────────────────────────────
   component PowerButton: Rectangle {
@@ -81,7 +60,7 @@ PanelWindow {
     Text {
       anchors.centerIn: parent
       text: btn.label
-      color: mouse.containsMouse ? Colors.bg : root.fgDim
+      color: mouse.containsMouse ? Colors.bg : Colors.textSecondary
       font.pixelSize: 20
     }
 
@@ -106,16 +85,16 @@ PanelWindow {
 
     height: 44
     radius: 10
-    color: active ? root.accentFill : (tglMouse.containsMouse ? Colors.divider : "transparent")
+    color: active ? root.accentFill : (tglMouse.containsMouse ? Colors.bgHover : Colors.bgElevated)
     border.width: 1
-    border.color: active ? Colors.accent : Colors.divider
+    border.color: active ? root.accentBorder : Colors.divider
 
     Behavior on color { ColorAnimation { duration: 120 } }
 
     Text {
       anchors.centerIn: parent
       text: tgl.label
-      color: tgl.active ? Colors.accent : root.fgDim
+      color: tgl.active ? Colors.accent : Colors.textSecondary
       font.pixelSize: 14
     }
 
@@ -133,7 +112,6 @@ PanelWindow {
     precision: SystemClock.Seconds
   }
 
-  // Click outside the panel to close
   MouseArea {
     id: maskCover
     anchors.fill: parent
@@ -163,12 +141,11 @@ PanelWindow {
       NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
     }
 
-    // Swallow clicks so pressing inside the panel doesn't close it
     MouseArea {
       anchors.fill: parent
     }
 
-    // ── Quick toggles: Bluetooth + Do Not Disturb ──────────────────────
+    // ── Quick toggles ──────────────────────────────────────────────────
     Row {
       id: toggles
       anchors.top: parent.top
@@ -190,12 +167,12 @@ PanelWindow {
       ToggleButton {
         width: Math.max(0, (toggles.width - toggles.spacing) / 2)
         label: "Do not disturb"
-        active: root.dnd
-        onClicked: Quickshell.execDetached(["swaync-client", "-d", "-sw"])
+        active: Notifs.dnd
+        onClicked: Notifs.dnd = !Notifs.dnd
       }
     }
 
-    // ── Notifications (handled by swaync) ──────────────────────────────
+    // ── Notifications Header ───────────────────────────────────────────
     Item {
       id: notifHeader
       anchors.top: toggles.bottom
@@ -218,8 +195,8 @@ PanelWindow {
       Text {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        text: root.notifCount
-        color: root.fgDim
+        text: Notifs.count
+        color: Colors.textSecondary
         font.pixelSize: 13
       }
     }
@@ -232,25 +209,67 @@ PanelWindow {
       anchors.right: parent.right
       anchors.leftMargin: 12
       anchors.rightMargin: 12
-      spacing: 8
 
       ToggleButton {
-        width: Math.max(0, (notifButtons.width - notifButtons.spacing) / 2)
-        label: "Open"
-        onClicked: {
-          AppSidePannelState.hide();
-          Quickshell.execDetached(["swaync-client", "-t", "-sw"]);
-        }
-      }
-
-      ToggleButton {
-        width: Math.max(0, (notifButtons.width - notifButtons.spacing) / 2)
+        width: parent.width
         label: "Clear all"
-        onClicked: Quickshell.execDetached(["swaync-client", "-C", "-sw"])
+        onClicked: Notifs.clearAll()
       }
     }
 
-    // ── Footer: divider line, time/date on the left, power button on the right ──
+    // ── Notification Container Box ─────────────────────────────────────
+    ListView {
+      id: notifListView
+      anchors.top: notifButtons.bottom
+      anchors.bottom: footer.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.margins: 12
+      spacing: 6
+      clip: true
+      model: Notifs.history
+
+      delegate: Rectangle {
+        required property var modelData
+
+        width: notifListView.width
+        height: 70
+        color: Colors.bgSurface
+        radius: 6
+
+        Column {
+          anchors.fill: parent
+          anchors.margins: 8
+          spacing: 2
+
+          Text {
+            width: parent.width
+            text: modelData.appName + " · " + modelData.summary
+            color: Colors.textPrimary
+            font.bold: true
+            font.pixelSize: 12
+            elide: Text.ElideRight
+          }
+
+          Text {
+            width: parent.width
+            text: modelData.body
+            color: Colors.textSecondary
+            font.pixelSize: 11
+            wrapMode: Text.WordWrap
+            maximumLineCount: 2
+            elide: Text.ElideRight
+          }
+        }
+
+        MouseArea {
+          anchors.fill: parent
+          onClicked: modelData.dismiss()
+        }
+      }
+    }
+
+    // ── Footer ─────────────────────────────────────────────────────────
     Item {
       id: footer
       anchors.left: parent.left
@@ -265,7 +284,7 @@ PanelWindow {
         anchors.leftMargin: 12
         anchors.rightMargin: 12
         height: 1
-        color: Colors.textPrimary
+        color: Colors.divider
       }
 
       Column {
@@ -282,7 +301,7 @@ PanelWindow {
 
         Text {
           text: Qt.formatDateTime(clock.date, "ddd dd/MM")
-          color: root.fgDim
+          color: Colors.textSecondary
           font.pixelSize: 13
         }
       }

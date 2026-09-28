@@ -93,8 +93,6 @@ PanelWindow {
 
   // ── Theming ──────────────────────────────────────────────────────────
   readonly property color accentFill: Colors.tint(Colors.accent, 0.18)
-  readonly property color accentIcon: Colors.tint(Colors.accent, 0.28)
-  readonly property color fgDim: Colors.tint(Colors.textPrimary, 0.65)
 
   // ── Panel geometry ───────────────────────────────────────────────────
   readonly property int maxVisible: 5
@@ -212,8 +210,7 @@ PanelWindow {
           Text {
             anchors.fill: parent
             text: "Search..."
-            color: Colors.textPrimary
-            opacity: 0.28
+            color: Colors.textMuted
             font.pixelSize: 13
             font.family: "Inter, Segoe UI, Roboto, sans-serif"
             verticalAlignment: Text.AlignVCenter
@@ -284,8 +281,7 @@ PanelWindow {
           anchors.centerIn: parent
           visible: root.filteredApps.length === 0
           text: "No matches"
-          color: Colors.textPrimary
-          opacity: 0.28
+          color: Colors.textMuted
           font.pixelSize: 13
           font.family: "Inter, Segoe UI, Roboto, sans-serif"
         }
@@ -306,7 +302,7 @@ PanelWindow {
             anchors.topMargin: 2
             anchors.bottomMargin: 2
             radius: 10
-            color: "transparent"
+            color: appRow.selected ? Colors.bgHover : "transparent"
 
             Behavior on color {
               ColorAnimation { duration: 100 }
@@ -378,7 +374,7 @@ PanelWindow {
                   font.pixelSize: appRow.selected ? 15 : 13
                   font.family: "Inter, Segoe UI, Roboto, sans-serif"
                   font.weight: appRow.selected ? Font.Bold : Font.Normal
-                  color: appRow.selected ? Colors.textPrimary : root.fgDim
+                  color: appRow.selected ? Colors.textBright : Colors.textSecondary
 
                   Behavior on color {
                     ColorAnimation { duration: 100 }
@@ -394,7 +390,7 @@ PanelWindow {
                     width: recentLabel.width + 8
                     height: 14
                     radius: 4
-                    color: Colors.tint(Colors.accent, 0.30)
+                    color: Colors.bgSurface
                     anchors.verticalCenter: parent.verticalCenter
 
                     Text {
@@ -404,7 +400,7 @@ PanelWindow {
                       text: "recent"
                       font.pixelSize: 12
                       font.family: "Inter, Segoe UI, Roboto, sans-serif"
-                      color: Colors.accent
+                      color: Colors.textSecondary
                     }
                   }
                 }

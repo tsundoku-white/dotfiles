@@ -3,47 +3,41 @@ import QtQuick
 
 QtObject {
   // ── Backgrounds ──────────────────────────────────────────────────────
-  // Slightly cooler and deeper than a flat dark theme, with clear
-  // separation between levels so elevated surfaces read as "elevated"
-  // instead of everything sitting at nearly the same value.
+  // Neutral ramp based on #141414, ~+6 lightness per level.
   readonly property color bg: "#141414"
-  readonly property color bgElevated: "#141414"
-  readonly property color bgSurface: "#1d2028"
-  readonly property color bgHover: "#262a35"
+  readonly property color bgElevated: "#1a1a1a"
+  readonly property color bgSurface: "#212121"
+  readonly property color bgHover: "#2b2b2b"
 
   // ── Text ─────────────────────────────────────────────────────────────
-  readonly property color textPrimary: "#f5f6f8"
-  readonly property color textSecondary: "#9a9eab"
-  readonly property color textMuted: "#636773"
-  readonly property color textDim: "#c2c5cf"
+  readonly property color textPrimary: "#ececec"
+  readonly property color textSecondary: "#a1a1a1"
+  readonly property color textMuted: "#6e6e6e"
+  readonly property color textDim: "#c6c6c6"
   readonly property color textBright: "#ffffff"
-  readonly property color textPower: "#e7e9ee"
+  readonly property color textPower: "#e2e2e2"
 
   // ── Dividers ─────────────────────────────────────────────────────────
-  readonly property color divider: "#242732"
-  readonly property color dividerStrong: "#2f3340"
+  readonly property color divider: "#262626"
+  readonly property color dividerStrong: "#363636"
 
   // ── Accents ──────────────────────────────────────────────────────────
-  // One restrained primary accent used for focus states and selection.
-  // Semantic colors are kept for meaning (power = red, volume = green)
-  // but desaturated so they read as one family rather than a rainbow.
+  // Muted, slightly desaturated so they sit well on near-black.
   readonly property color accent: "#ffffff"
-  readonly property color accentDefault: "#5b93ff"
-  readonly property color accentBlue: "#ffffff"
-  readonly property color accentGreen: "#34d399"
-  readonly property color accentRed: "#ff6b6b"
-  readonly property color accentOrange: "#ffa958"
+  readonly property color accentDefault: "#6b9fff"
+  readonly property color accentBlue: "#6b9fff"
+  readonly property color accentGreen: "#4ade80"
+  readonly property color accentRed: "#f87171"
+  readonly property color accentOrange: "#fb9f5a"
   readonly property color accentPurple: "#a78bfa"
   readonly property color accentTeal: "#2dd4bf"
 
   // ── Design tokens ────────────────────────────────────────────────────
-  // Centralised so every panel/button shares the same rhythm instead of
-  // each file inventing its own radius or shadow values.
   readonly property int radiusPanel: 5
   readonly property int radiusCard: 5
   readonly property int radiusButton: 5
 
-  readonly property color shadowColor: "#8f000000"
+  readonly property color shadowColor: "#a6000000"
   readonly property real shadowBlur: 0.8
 
   function tint(color, alpha) {
