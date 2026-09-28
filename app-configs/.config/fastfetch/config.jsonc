@@ -1,0 +1,39 @@
+{
+  "$schema": "https://github.com",
+  "logo": {
+    "type": "small"
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "font",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    {
+      "type": "disk",
+      "key": "OS Age",
+      "folders": "/",
+      "format": "{days} days"
+    },
+    "disk",
+    "poweradapter",
+    "break",
+    "colors"
+  ]
+}
+

@@ -1,0 +1,3 @@
+singleton Colors 1.0 Colors.qml
+singleton AppLauncherState 1.0 AppLauncherState.qml
+AppLauncher 1.0 AppLauncher.qml

@@ -1,0 +1,20 @@
+# GRUB boot loader configuration
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="Arch"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i915.enable_dpst=0"
+GRUB_CMDLINE_LINUX=""
+
+GRUB_PRELOAD_MODULES="part_gpt part_msdos"
+
+GRUB_TIMEOUT_STYLE=menu
+
+GRUB_TERMINAL_INPUT=console
+
+GRUB_GFXMODE=2560x1440
+
+GRUB_GFXPAYLOAD_LINUX=keep
+
+# Uncomment to disable generation of recovery mode menu entries
+GRUB_DISABLE_RECOVERY=true

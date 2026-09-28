@@ -1,0 +1,41 @@
+# Get editor autocompletion based on the official config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Global configuration settings
+add_newline = true
+
+# Define the order and layout of modules in the prompt line
+format = """
+$directory\
+$git_branch\
+$git_status\
+$git_metrics\
+$c\
+$cmake\
+$line_break\
+$character"""
+
+# Customize the 'character' module (the main prompt symbol)
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[X](bold red)"
+
+# Customize how the current directory is displayed
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+
+# Customize the Git branch module
+[git_branch]
+symbol = " "
+format = "on [$symbol$branch]($style) "
+
+# Git metrics are hidden by default; this activates them
+[git_metrics]
+disabled = false
+format = "([+$added]($added_style) [-$deleted]($deleted_style) )"
+
+# Disable specific modules you don't care to see
+[package]
+disabled = true
+

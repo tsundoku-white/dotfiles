@@ -1,0 +1,38 @@
+-- 1. TURN ON THE LUA BYTECODE CACHE
+-- This must be the very first line so all subsequent files use the cache!
+if vim.loader then
+  vim.loader.enable()
+end
+
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup lazy.nvim
+-- All plugins are auto-imported from lua/plugins/
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  defaults = { lazy = true },
+  -- 2. ENABLE LAZY'S INTERNAL METADATA CACHE
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
+})
+

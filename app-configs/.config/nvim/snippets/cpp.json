@@ -1,0 +1,26 @@
+{
+  "Rule of 5 Boilerplate": {
+    "prefix": "rl5",
+    "body": [
+      "// Constructor",
+      "$1();",
+      "",
+      "// Destructor",
+      "~$1();",
+      "",
+      "// Copy Constructor",
+      "$1(const $1& other);",
+      "",
+      "// Copy Assignment Operator",
+      "$1& operator=(const $1& other);",
+      "",
+      "// Move Constructor",
+      "$1($1&& other) noexcept;",
+      "",
+      "// Move Assignment Operator",
+      "$1& operator=($1&& other) noexcept;"
+    ],
+    "description": "Generates the complete Rule of 5 declarations for a C++ class"
+  }
+}
+
