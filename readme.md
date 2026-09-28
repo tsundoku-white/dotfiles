@@ -6,6 +6,9 @@
 ## Lockscreen
 ![lockscreen](./images/lockscreen.png)
 
+## Launcher
+![launcher](./images/launcher.png)
+
 ## how to use?
 ```bash
 chmod +x ~/dotfiles/install.sh
