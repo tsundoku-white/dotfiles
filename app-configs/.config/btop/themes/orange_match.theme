@@ -1,0 +1,44 @@
+# Main background and text colors matching your alacritty.toml
+theme[main_bg]="#0c0c0c"
+theme[main_fg]="#ff7a00"
+
+# Title headers and accent lines
+theme[title]="#ff7a00"
+theme[hi_fg]="#ff9e3b"
+theme[selected_bg]="#1c1c1c"
+theme[selected_fg]="#6cb6ff"
+
+# Graph lines gradients (from Green down to Orange warnings)
+theme[cpu_box]="#ff7a00"
+theme[mem_box]="#ff7a00"
+theme[net_box]="#ff7a00"
+theme[proc_box]="#ff7a00"
+
+theme[div_line]="#1c1c1c"
+
+# Meter bars gradients
+theme[meter_bg]="#1c1c1c"
+theme[temp_start]="#8fd694"
+theme[temp_mid]="#ff9e3b"
+theme[temp_end]="#ff5370"
+
+theme[cpu_start]="#ff9e3b"
+theme[cpu_mid]="#ff7a00"
+theme[cpu_end]="#ff5370"
+
+theme[free_start]="#8fd694"
+theme[free_mid]="#ff9e3b"
+theme[free_end]="#ff5370"
+
+theme[cached_start]="#6cb6ff"
+theme[cached_mid]="#c9a0ff"
+theme[cached_end]="#ff5370"
+
+theme[available_start]="#8fd694"
+theme[available_mid]="#ff9e3b"
+theme[available_end]="#ff5370"
+
+theme[used_start]="#ff9e3b"
+theme[used_mid]="#ff7a00"
+theme[used_end]="#ff5370"
+

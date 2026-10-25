@@ -2,35 +2,49 @@ pragma Singleton
 import QtQuick
 
 QtObject {
+  // ── Raw palette (from colors.lua) ────────────────────────────────────
+  readonly property color orange: "#ff7a00"
+  readonly property color amber: "#ffb000"
+  readonly property color pink: "#ff2a6d"
+  readonly property color cyan: "#05d9e8"
+  readonly property color purple: "#b967ff"
+  readonly property color yellow: "#f9f002"
+  readonly property color fg: "#f3e9dc"
+  readonly property color comment: "#7a6a8a"
+  readonly property color popup: "#1a1024"
+  readonly property color sel: "#3a1f4d"
+  readonly property color line: "#2a1838"
+
   // ── Backgrounds ──────────────────────────────────────────────────────
-  // Neutral ramp based on #141414, ~+6 lightness per level.
-  readonly property color bg: "#141414"
-  readonly property color bgElevated: "#1a1a1a"
-  readonly property color bgSurface: "#212121"
-  readonly property color bgHover: "#2b2b2b"
+  readonly property color bg: "#0c0c0c"          // popup
+  readonly property color bgElevated: "#0c0c0c"  // line
+  readonly property color bgSurface: "#3a1f4d"   // sel
+  readonly property color bgHover: "#4a2a60"     // derived: one step above sel
 
   // ── Text ─────────────────────────────────────────────────────────────
-  readonly property color textPrimary: "#ececec"
-  readonly property color textSecondary: "#a1a1a1"
-  readonly property color textMuted: "#6e6e6e"
-  readonly property color textDim: "#c6c6c6"
+  readonly property color textPrimary: "#f3e9dc"    // fg
+  readonly property color textSecondary: "#ffd1a0"  // @property / @variable.parameter
+  readonly property color textMuted: "#7a6a8a"      // comment
+  readonly property color textDim: "#cfc4b8"        // derived: between fg and comment
   readonly property color textBright: "#ffffff"
-  readonly property color textPower: "#e2e2e2"
+  readonly property color textPower: "#ffe9cc"      // derived: warm bright
 
   // ── Dividers ─────────────────────────────────────────────────────────
-  readonly property color divider: "#262626"
-  readonly property color dividerStrong: "#363636"
+  readonly property color divider: "#3a1f4d"        // sel
+  readonly property color dividerStrong: "#ff7a00"  // orange (WinSeparator / FloatBorder)
 
   // ── Accents ──────────────────────────────────────────────────────────
-  // Muted, slightly desaturated so they sit well on near-black.
-  readonly property color accent: "#ffffff"
-  readonly property color accentDefault: "#6b9fff"
-  readonly property color accentBlue: "#6b9fff"
-  readonly property color accentGreen: "#4ade80"
-  readonly property color accentRed: "#f87171"
-  readonly property color accentOrange: "#fb9f5a"
-  readonly property color accentPurple: "#a78bfa"
-  readonly property color accentTeal: "#2dd4bf"
+  readonly property color accent: "#ff7a00"
+  readonly property color accentDefault: "#ff7a00"
+  readonly property color accentBlue: "#05d9e8"    // cyan (no blue in palette)
+  readonly property color accentGreen: "#f9f002"   // yellow (no green in palette)
+  readonly property color accentRed: "#ff2a6d"     // pink
+  readonly property color accentOrange: "#ff7a00"
+  readonly property color accentPurple: "#b967ff"
+  readonly property color accentTeal: "#05d9e8"    // cyan
+  readonly property color accentAmber: "#ffb000"
+  readonly property color accentYellow: "#f9f002"
+  readonly property color accentPink: "#ff2a6d"
 
   // ── Design tokens ────────────────────────────────────────────────────
   readonly property int radiusPanel: 5

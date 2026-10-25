@@ -1,8 +1,3 @@
--- hyprland.lua
--- Converted from hyprland.conf (hyprlang -> Lua config, Hyprland 0.55+)
--- Place at ~/.config/hypr/hyprland.lua
--- Ref: https://wiki.hypr.land/Configuring/Start/
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -29,14 +24,15 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("GLFW_IM_MODULE", "ibus")
-hl.env("XCURSOR_THEME", "Papirus")
+hl.env("XCURSOR_THEME", "VolantesCursors")
+hl.env("XCURSOR_SIZE", "24")
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("swaybg -o DP-1 -i /home/ayris/Pictures/wallpapers/earth_c.jpg -m fill -o HDMI-A-1 -i /home/ayris/Pictures/wallpapers/earth_l.jpg")
+    hl.exec_cmd("swaybg -o DP-1 -i /home/ayris/wallpapers/orange.jpg -m fill -o HDMI-A-1 -i /home/ayris/wallpapers/orange.jpg")
     hl.exec_cmd("quickshell")
     hl.exec_cmd("fcitx5")
 end)
@@ -59,20 +55,20 @@ hl.config({
         rounding_power = 5,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity = 0.95,
-        inactive_opacity = 0.95,
+        active_opacity = 0.8,
+        inactive_opacity = 0.8,
 
         shadow = {
-            enabled = false,
+            enabled = true,
             range = 4,
-            render_power = 3,
+            render_power = 10,
             color = 0xee1a1a1a,
         },
 
         -- https://wiki.hypr.land/Configuring/Variables/#blur
         blur = {
             enabled = true,
-            size = 3,
+            size = 2,
             passes = 3,
             vibrancy = 0.1696,
         },
@@ -90,6 +86,20 @@ hl.config({
     master = {
         new_status = "master",
     },
+
+    dwindle = {
+      force_split                  = 0,
+      preserve_split               = false,
+      smart_split                  = false,
+      smart_resizing               = true,
+      permanent_direction_override = false,
+      special_scale_factor         = 1,
+      split_width_multiplier       = 1.0,
+      use_active_for_splits        = true,
+      default_split_ratio          = 1.0,
+      split_bias                   = 0,
+      precise_mouse_move           = false,
+  },
 
     misc = {
         force_default_wallpaper = 0,

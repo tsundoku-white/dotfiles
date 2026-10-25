@@ -5,5 +5,5 @@ vim.opt.expandtab = true  -- Convert tabs to spaces
 vim.opt.number = true         -- Show absolute line number for current line
 vim.opt.relativenumber = true -- Show relative line numbers for other lines
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon500"
-
+vim.opt_local.cinoptions = "j1,J1,(0,W4,m1"
 vim.opt.mouse = ""

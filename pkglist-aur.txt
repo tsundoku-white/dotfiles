@@ -1,10 +1,9 @@
-aseprite
-cmake-language-server
 davinci-resolve
 flat-remix
 flat-remix-gtk
 grimblast-git
-shader-slang-bin
-ttf-monapo
-yay-bin
-yay-bin-debug
+phinger-cursors
+protonup-qt
+unimatrix-git
+yay
+yay-debug

@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.opt_local.equalprg = "clang-format"
+
 vim.keymap.set('n', '<Leader>e', ':Ex<CR>', { noremap = true, silent = true, desc = 'Open Netrw' })
 
 -- Use the system clipboard for all yank/delete/paste, so copying in one
@@ -16,7 +18,14 @@ vim.keymap.set('n', '<Leader>P', '"+P', { noremap = true, silent = true, desc = 
 require("config.options")
 require("config.lazy")
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.c", "*.cpp", "*.h", "*.hpp" },
+  callback = function()
+    vim.lsp.buf.format({ timeout_ms = 2000 })
+  end,
+})
+
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
-vim.opt.laststatus = 0
+vim.opt.laststatus = 0 

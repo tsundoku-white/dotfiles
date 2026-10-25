@@ -6,21 +6,35 @@ args = ["-l"]
 
 [colors.primary]
 background = "#0c0c0c"
-foreground = "#dedede"
+foreground = "#ff7a00"   # light blue text
 
 [colors.cursor]
-text = "#dedede"
-cursor = "#dedede"
+text = "#f3e9dc"
+cursor = "#ff7a00"       # orange cursor
+
+[colors.selection]
+text = "#0c0c0c"
+background = "#6cb6ff"
+
+[colors.normal]
+black = "#1c1c1c"
+red = "#ff5370"          # errors
+green = "#8fd694"
+yellow = "#ff9e3b"       # orange
+blue = "#6cb6ff"
+magenta = "#c9a0ff"
+cyan = "#7fe0e8"
+white = "#c8d6e5"
 
 [colors.bright]
-black = "#928374"
-red = "#fb4934"
-green = "#b8bb26"
-yellow = "#fabd2f"
-blue = "#83a598"
-magenta = "#d3869b"
-cyan = "#8ec07c"
-white = "#ebdbb2"
+black = "#5c6773"
+red = "#ff6b6b"
+green = "#a6e3a1"
+yellow = "#ffb86b"   
+blue = "#8ccbff"
+magenta = "#dbb8ff"
+cyan = "#9ff0f5"
+white = "#e6f1ff"
 
 
 # [font.normal]
@@ -40,30 +54,31 @@ white = "#ebdbb2"
 # style = "Bold Italic"
 
 
-[font.bold]
-family = "Fira Mono"
-style = "Bold"
-
-
 [font]
-size = 15.0
+size = 13.0
 
 [font.normal]
-family = "Fira Mono"
+family = "Cascadia Code"
 style = "Regular"
 
+[font.bold]
+family = "Cascadia Code"
+style = "Bold"
+
 [font.italic]
-family = "Fira Mono"
+family = "Cascadia Code"
 style = "Italic"
 
 [font.bold_italic]
-family = "Fira Mono"
+family = "Cascadia Code"
 style = "Bold Italic"
 
 [window]
 padding = { x = 5, y = 5 }
 decorations = "full"
+opacity = 1
 
 [scrolling]
-history = 10000
+history = 1000
 multiplier = 3
+
